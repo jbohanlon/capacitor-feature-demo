@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import './ExploreContainer.css';
 
 interface ContainerProps {
