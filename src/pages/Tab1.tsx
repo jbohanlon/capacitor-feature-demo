@@ -21,7 +21,8 @@ const Tab1: React.FC = () => {
         {
           id: 1,
           title: 'First notification',
-          body: 'It worked, nice!',
+          body: 'Expand notification for options.',
+          actionTypeId: 'reminder',
         },
         {
           id: 2,

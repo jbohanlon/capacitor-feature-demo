@@ -1,12 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import { LocalNotifications } from '@capacitor/local-notifications';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 // Call the element loader after the platform has been bootstrapped
 defineCustomElements(window);
+
+// Configure notification action types once, right here
+LocalNotifications.registerActionTypes({
+  types: [
+    {
+      id: 'reminder',
+      actions: [
+        {
+          id: 'showDetails',
+          title: 'Show details',
+        },
+        {
+          id: 'markAsCompleted',
+          title: 'Mark as completed',
+        },
+        {
+          id: 'snooze',
+          title: 'Snooze',
+        },
+      ],
+    },
+  ],
+});
+
+LocalNotifications.addListener('localNotificationActionPerformed', (notificationAction) => {
+  console.log(`Action performed: ${notificationAction.actionId} for action type: ${notificationAction.notification.actionTypeId}`);
+});
 
 ReactDOM.render(
   <React.StrictMode>
