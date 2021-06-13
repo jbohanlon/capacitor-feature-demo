@@ -12,6 +12,7 @@ const Tab1: React.FC = () => {
         title: 'First notification',
         body: 'Expand notification for options.',
         actionTypeId: 'reminder',
+        channelId: 'level4',
       },
       {
         id: 2,
@@ -21,6 +22,19 @@ const Tab1: React.FC = () => {
         schedule: {
           at: futureDate({ seconds: 5 }),
         },
+        channelId: 'level4',
+      },
+    ]);
+  };
+
+  const fireLevelNotification = (level: number) => {
+    scheduleLocalNotifications([
+      {
+        id: 1,
+        title: `This is a level ${level} notification`,
+        body: `Details for notification ${level}`,
+        actionTypeId: 'reminder',
+        channelId: `level${level}`,
       },
     ]);
   };
@@ -35,7 +49,12 @@ const Tab1: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        <IonButton color="primary" onClick={() => { scheduleTestNotifications(); }}>Fire notification!</IonButton>
+        <IonButton color="primary" onClick={() => { scheduleTestNotifications(); }}>Schedule some test notifications!</IonButton>
+        <IonButton color="primary" onClick={() => { fireLevelNotification(5); }}>Fire level 5!</IonButton>
+        <IonButton color="primary" onClick={() => { fireLevelNotification(4); }}>Fire level 4!</IonButton>
+        <IonButton color="primary" onClick={() => { fireLevelNotification(3); }}>Fire level 3!</IonButton>
+        <IonButton color="primary" onClick={() => { fireLevelNotification(2); }}>Fire level 2!</IonButton>
+        <IonButton color="primary" onClick={() => { fireLevelNotification(1); }}>Fire level 1!</IonButton>
       </IonContent>
     </IonPage>
   );

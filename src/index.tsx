@@ -4,11 +4,12 @@ import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import { registerCustomActionTypes, registerCustomListeners } from './utils/NotificationUtils';
+import { registerCustomChannels, registerCustomActionTypes, registerCustomListeners } from './utils/NotificationUtils';
 
 // Call the element loader after the platform has been bootstrapped
 defineCustomElements(window);
 
+registerCustomChannels();
 registerCustomActionTypes();
 registerCustomListeners();
 

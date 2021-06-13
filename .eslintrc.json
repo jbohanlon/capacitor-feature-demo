@@ -25,6 +25,8 @@
         "linebreak-style": "off",
         "react/react-in-jsx-scope": "off",
         "arrow-body-style": "off",
-        "react/prop-types": "off" // might want to turn this on later?
+        "react/prop-types": "off", // might want to turn this on later?
+        "max-len": "off"
+        //"max-len": ["warn", { "code": 120}] // re-enable later if we can get IDE to auto-fix long lines
     }
 }

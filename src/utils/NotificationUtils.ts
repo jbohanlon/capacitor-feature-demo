@@ -1,5 +1,48 @@
-import { LocalNotifications } from '@capacitor/local-notifications';
+import { Channel, LocalNotifications } from '@capacitor/local-notifications';
 import type { ScheduleOptions, LocalNotificationSchema } from '@capacitor/local-notifications';
+
+export const registerCustomChannels = () => {
+  // "Creating an existing notification channel with its original values performs no operation,
+  // so it's safe to call this code when starting an app."
+  // - https://developer.android.com/training/notify-user/channels#CreateChannel
+
+  const channels: Channel[] = [
+    {
+      id: 'level5',
+      name: 'Max - Level 5',
+      description: 'Level 5 Notification Channel',
+      importance: 5,
+    },
+    {
+      id: 'level4',
+      name: 'High - Level 4',
+      description: 'Level 4 Notification Channel',
+      importance: 4,
+    },
+    {
+      id: 'level3',
+      name: 'Default - Level 3',
+      description: 'Level 3 Notification Channel',
+      importance: 3,
+    },
+    {
+      id: 'level2',
+      name: 'Low - Level 2',
+      description: 'Level 2 Notification Channel',
+      importance: 2,
+    },
+    {
+      id: 'level1',
+      name: 'Min - Level 1',
+      description: 'Level 1 Notification Channel',
+      importance: 1,
+    },
+  ];
+
+  channels.forEach((channel) => {
+    LocalNotifications.createChannel(channel);
+  });
+};
 
 export const registerCustomActionTypes = () => {
   // Configure notification action types once, right here
