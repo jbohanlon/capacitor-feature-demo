@@ -1,28 +1,31 @@
 import {
-  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton,
+  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, isPlatform,
 } from '@ionic/react';
-import { futureDate, scheduleLocalNotifications } from '../utils/NotificationUtils';
+
+import {
+  futureDate, scheduleLocalNotifications, requestLocalNotificationPermissions, checkLocalNotificationPermissions,
+} from '../utils/NotificationUtils';
 import './Tab1.css';
 
 const Tab1: React.FC = () => {
   const scheduleTestNotifications = () => {
     scheduleLocalNotifications([
       {
-        id: 1,
+        id: 10,
         title: 'First notification',
         body: 'Expand notification for options.',
         actionTypeId: 'reminder',
-        channelId: 'level4',
+        channelId: 'level5',
       },
       {
-        id: 2,
+        id: 11,
         title: 'Second notification',
         body: 'It also worked! Also nice!',
         largeBody: "Wow there's so much text here. What an overwhelming amount of text. It's IRRESPONSIBLE to have this much text!",
         schedule: {
           at: futureDate({ seconds: 5 }),
         },
-        channelId: 'level4',
+        channelId: 'level5',
       },
     ]);
   };
@@ -30,13 +33,30 @@ const Tab1: React.FC = () => {
   const fireLevelNotification = (level: number) => {
     scheduleLocalNotifications([
       {
-        id: 1,
+        id: level,
         title: `This is a level ${level} notification`,
         body: `Details for notification ${level}`,
         actionTypeId: 'reminder',
         channelId: `level${level}`,
       },
     ]);
+  };
+
+  const consoleLogPermissionStatus = () => {
+    checkLocalNotificationPermissions().then((permissionStatus) => { console.log(JSON.stringify(permissionStatus)); });
+  };
+
+  const renderPermissionButtonsOnIos = () => {
+    if (isPlatform('ios')) {
+      return (
+        <>
+          <IonButton color="primary" onClick={() => { requestLocalNotificationPermissions(); }}>Request local notification permissions!</IonButton>
+          <IonButton color="primary" onClick={() => { consoleLogPermissionStatus(); }}>Console log permission status!</IonButton>
+        </>
+      );
+    }
+
+    return false;
   };
 
   return (
@@ -49,7 +69,8 @@ const Tab1: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        <IonButton color="primary" onClick={() => { scheduleTestNotifications(); }}>Schedule some test notifications!</IonButton>
+        { renderPermissionButtonsOnIos() }
+        <IonButton color="primary" onClick={() => { scheduleTestNotifications(); }}>Schedule test notifications!</IonButton>
         <IonButton color="primary" onClick={() => { fireLevelNotification(5); }}>Fire level 5!</IonButton>
         <IonButton color="primary" onClick={() => { fireLevelNotification(4); }}>Fire level 4!</IonButton>
         <IonButton color="primary" onClick={() => { fireLevelNotification(3); }}>Fire level 3!</IonButton>

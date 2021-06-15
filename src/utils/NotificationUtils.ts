@@ -1,5 +1,5 @@
 import { Channel, LocalNotifications } from '@capacitor/local-notifications';
-import type { ScheduleOptions, LocalNotificationSchema } from '@capacitor/local-notifications';
+import type { ScheduleOptions, LocalNotificationSchema, PermissionStatus } from '@capacitor/local-notifications';
 
 export const registerCustomChannels = () => {
   // "Creating an existing notification channel with its original values performs no operation,
@@ -97,4 +97,13 @@ export const scheduleLocalNotifications = (notifications: LocalNotificationSchem
   };
 
   LocalNotifications.schedule(scheduleOptions);
+};
+
+export const requestLocalNotificationPermissions = (): Promise<PermissionStatus> => {
+  return LocalNotifications.requestPermissions();
+};
+
+export const checkLocalNotificationPermissions = (): Promise<PermissionStatus> => {
+  // Note: Allowed status response object is {"display":"granted"}
+  return LocalNotifications.checkPermissions();
 };
