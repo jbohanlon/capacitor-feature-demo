@@ -1,7 +1,6 @@
 import {
-  IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
+  IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToggle, IonToolbar,
 } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './Tab3.css';
 
 const Tab3: React.FC = () => {
@@ -12,16 +11,20 @@ const Tab3: React.FC = () => {
           <IonTitle>Tab 3</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 3</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 3 page" />
+      <IonContent>
+        <IonList class="ion-no-margin">
+          <IonItem>
+            <IonInput placeholder="Title" />
+          </IonItem>
+          <IonItem>
+            <IonLabel>
+              Repeats?
+            </IonLabel>
+            <IonToggle checked={false} onIonChange={(e) => {}} />
+          </IonItem>
+        </IonList>
       </IonContent>
     </IonPage>
   );
 };
-
 export default Tab3;

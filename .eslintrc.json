@@ -26,7 +26,9 @@
         "react/react-in-jsx-scope": "off",
         "arrow-body-style": "off",
         "react/prop-types": "off", // might want to turn this on later?
-        "max-len": "off"
+        "max-len": "off",
+        "no-unused-vars": "warn",
+        "@typescript-eslint/no-unused-vars": "warn"
         //"max-len": ["warn", { "code": 120}] // re-enable later if we can get IDE to auto-fix long lines
     }
 }
