@@ -1,5 +1,6 @@
 import { Channel, LocalNotifications } from '@capacitor/local-notifications';
-import type { ScheduleOptions, LocalNotificationSchema, PermissionStatus } from '@capacitor/local-notifications';
+import type { ScheduleOptions, LocalNotificationSchema } from '@capacitor/local-notifications';
+import { PermissionState } from '@capacitor/core';
 
 export const registerCustomChannels = () => {
   // "Creating an existing notification channel with its original values performs no operation,
@@ -70,7 +71,9 @@ export const registerCustomActionTypes = () => {
 };
 
 export const registerCustomListeners = () => {
+  // Add a listener to demonstrate functionality
   LocalNotifications.addListener('localNotificationActionPerformed', (notificationAction) => {
+    // eslint-disable-next-line no-console
     console.log(`Action performed: ${notificationAction.actionId} for action type: ${notificationAction.notification.actionTypeId}`);
   });
 };
@@ -99,11 +102,11 @@ export const scheduleLocalNotifications = (notifications: LocalNotificationSchem
   LocalNotifications.schedule(scheduleOptions);
 };
 
-export const requestLocalNotificationPermissions = (): Promise<PermissionStatus> => {
-  return LocalNotifications.requestPermissions();
+export const requestLocalNotificationPermission = async (): Promise<PermissionState> => {
+  return (await LocalNotifications.requestPermissions()).display;
 };
 
-export const checkLocalNotificationPermissions = (): Promise<PermissionStatus> => {
+export const checkLocalNotificationPermission = async (): Promise<PermissionState> => {
   // Note: Allowed status response object is {"display":"granted"}
-  return LocalNotifications.checkPermissions();
+  return (await LocalNotifications.checkPermissions()).display;
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
-import { getPlatforms, isPlatform } from '@ionic/react';
+import { isPlatform } from '@ionic/react';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
@@ -9,8 +9,6 @@ import { registerCustomChannels, registerCustomActionTypes, registerCustomListen
 
 // Call the element loader after the platform has been bootstrapped
 defineCustomElements(window);
-
-console.log(getPlatforms());
 
 // Note: Need to check separately for ios and android (rather than checking 'mobile')
 // because of a window browser platform bug: https://github.com/ionic-team/ionic-framework/issues/19942

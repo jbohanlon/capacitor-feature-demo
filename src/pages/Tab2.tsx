@@ -10,7 +10,6 @@ import './Tab2.css';
 
 const Tab2: React.FC = () => {
   const { photos, takePhoto, deletePhoto } = usePhotoGallery();
-
   const [photoToDelete, setPhotoToDelete] = useState<UserPhoto>();
 
   return (
@@ -22,17 +21,19 @@ const Tab2: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent>
+      <IonContent className="photo-gallery">
         <IonGrid>
           <IonRow>
-            {photos.map((photo) => (
-              <IonCol size="6" key={photo.filepath}>
-                <IonImg
-                  onClick={() => setPhotoToDelete(photo)}
-                  src={photo.webviewPath}
-                />
-              </IonCol>
-            ))}
+            {photos.map((photo) => {
+              return (
+                <IonCol size="6" key={photo.filepath}>
+                  <IonImg
+                    onClick={() => setPhotoToDelete(photo)}
+                    src={photo.webviewPath}
+                  />
+                </IonCol>
+              );
+            })}
           </IonRow>
         </IonGrid>
         <IonFab vertical="bottom" horizontal="center" slot="fixed">
