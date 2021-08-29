@@ -1,6 +1,6 @@
 {
 	"appId": "io.ionic.starter",
-	"appName": "photo-gallery",
+	"appName": "capacitor-feature-demo",
 	"webDir": "build",
 	"bundledWebRuntime": false,
 	"plugins": {

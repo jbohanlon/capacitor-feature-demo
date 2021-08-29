@@ -96,12 +96,16 @@ const Tab1: React.FC = () => {
             localNotificationsState && localNotificationsState.startsWith('prompt')
             && (
               <IonItem>
-                <IonButton color="medium" onClick={() => { promptForLocalNotificationPermission(); }}>Request local notification permission</IonButton>
+                <IonButton color="medium" onClick={() => { promptForLocalNotificationPermission(); }}>
+                  Request local notification permission
+                </IonButton>
               </IonItem>
             )
           }
           <IonItem>
-            <IonButton color="primary" onClick={() => { scheduleDelayedNotifications(); }}>Schedule delayed notifications! (3 seconds, 10 seconds)</IonButton>
+            <IonButton color="primary" onClick={() => { scheduleDelayedNotifications(); }}>
+              Schedule delayed notifications! (3 seconds, 10 seconds)
+            </IonButton>
           </IonItem>
           <IonItem>
             <IonButton color="primary" onClick={() => { fireLevelNotification(5); }}>Fire level 5!</IonButton>
